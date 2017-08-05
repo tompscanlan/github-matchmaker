@@ -50,3 +50,17 @@ feature? Allow thumbs-up or down on matches, store data and use it when training
 
 This may be how we initially train it... run searches, rank thumbs up/down, store results, train, search, rank, train....?
 
+
+
+## Testing
+Tested on a mac, but real requirement is docker-compose.
+
+```
+# git clone this repo
+
+git clone https://github.com/tompscanlan/github-matchmaker
+cd github-matchmaker/integ-test/
+./test.sh
+
+```
+

@@ -1,0 +1,16 @@
+version: '2'
+services:
+  integration-test:
+    depends_on:
+    - mock
+    build:
+      context: .
+    command: http://mock /tests/mock.yaml
+    volumes:
+      - ./tests:/tests:ro
+
+  mock:
+    build:
+      context: ../query-services/mock
+    ports:
+     - "5000:5000"

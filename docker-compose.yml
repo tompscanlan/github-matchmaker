@@ -1,0 +1,8 @@
+version: '2'
+services:
+  mock:
+    build: ./query-services/mock
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code

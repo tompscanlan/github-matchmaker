@@ -1,0 +1,17 @@
+---
+- config:
+    - testset: "Basic tests"
+    - timeout: 15
+
+- test:
+    - url: "/v1/mock"
+    - expected_status: [400]
+    - curl_option_port: 5000
+    - curl_option_connecttimeout: 15
+
+- test:
+    - url: "/v1/mock?seed=test"  # This does the same thing
+    - curl_option_port: 5000
+    - curl_option_connecttimeout: 15
+
+

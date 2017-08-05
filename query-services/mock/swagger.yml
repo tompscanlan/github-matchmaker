@@ -1,0 +1,62 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server for generating github issue queries."
+  version: "1.0.0"
+  title: "issue query mock"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "tscanlan@vmware.com"
+  license:
+    name: "MIT"
+    url: "https://opensource.org/licenses/MIT"
+
+basePath: "/v1"
+
+schemes:
+- "http"
+#- "https"
+paths:
+  /mock:
+    get:
+      summary: "Generate a github issue search query"
+      description: "Given string, return a github issue search query string"
+      operationId: "api.mock.class_instance.generateIssueQuery"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "seed"
+        in: "query"
+        description: "Seed for generating the search terms"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Query"
+#        400:
+#          description: "Invalid status value"
+#        405:
+#          description: "Invalid input"
+#      security:
+#      - mock_auth:
+#        - "read:mock"
+#
+#securityDefinitions:
+#  mock_auth:
+#    type: "oauth2"
+#    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+#    flow: "implicit"
+#    scopes:
+#      read:mock: "get a query string"
+#
+definitions:
+  Query:
+    type: "object"
+    properties:
+      query:
+        type: "string"
+#
+#externalDocs:
+#  description: "Find out more about Swagger"
+#  url: "http://swagger.io"
