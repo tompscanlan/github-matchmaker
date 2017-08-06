@@ -1,12 +1,11 @@
+import json
 
 class Mock:
     query = ""
-    def __init__(self, seed=""):
-        if seed:
-            self.query = seed
 
-    def generateIssueQuery(self):
-        return self.query
+    def generateIssueQuery(self, seed=""):
+        self.query = seed
+        return json.dumps(dict(query=self.query)), 200
 
 class_instance = Mock()
 

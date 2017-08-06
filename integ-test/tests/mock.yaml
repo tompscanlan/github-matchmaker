@@ -2,6 +2,8 @@
 - config:
     - testset: "Basic tests"
     - timeout: 15
+    - variable_binds: {seed: 'theseed'}
+
 
 - test:
     - url: "/v1/mock"
@@ -10,8 +12,14 @@
     - curl_option_connecttimeout: 15
 
 - test:
-    - url: "/v1/mock?seed=test"  # This does the same thing
+    - url: { template: "/v1/mock?seed=$seed" }
     - curl_option_port: 5000
     - curl_option_connecttimeout: 15
-
+    - expected_status: [200]
+    - validators:
+        - compare: {header: "content-type", comparator: "contains", expected: 'json'}
+        # not clear on why this won't work....
+        #- compare: {jsonpath_mini: "query", comparator: "str_eq", expected: {template: '$seed'}}
+        # this ought to be the same as above... but I'm missing something
+        - compare: {jsonpath_mini: "", comparator: "str_eq", expected: {template: '{"query": "$seed"}'}}
 
