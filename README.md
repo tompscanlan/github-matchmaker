@@ -50,7 +50,7 @@ feature? Allow thumbs-up or down on matches, store data and use it when training
 
 This may be how we initially train it... run searches, rank thumbs up/down, store results, train, search, rank, train....?
 
-
+![services diagram](./github-matcher.png)
 
 ## Testing
 Tested on a mac, but real requirement is docker-compose.
