@@ -6,23 +6,42 @@ Proposed as a [VMware](http://www.vmware.com) Borathon project by team who-has-f
 
 
 ## Description
-Sometimes we have got a bit of free time, and would love to help a small
-project fix issues or add features.
-If we could identify a high visibility issue that
-* could be completed in our allotted time frame
-* matches our skill level
-* is in a specific language or technology area
+Sometimes we have got a bit of free time, and would love to help fix issues
+or add features to an existing project.
+If we could identify a high visibility issue fit our preferences,
+then we would be more likely to submit patches that have a big
+impact for an existing project.
 
-then we would be more likely to submit patches that have a big impact
-to an existing project.
+Those preferences may be something like:
+* issue could be completed in our allotted time frame
+* issue matches our skill level
+* project is in a specific language or technology area
+* other criteria....
 
-I envision enabling a search of github issues to 
-help learn indicators of 
-* project criticality (kubernetes vs cowsay) 
-* pain level the issue is at (number of people having issue, discussing it, thumbs up?) 
-* estimation of difficulty level of the code change (tags on issues may help, may be other indicators, like someone claiming it "should be easy" in the discussion) 
-* Once some data has been collected, maybe we can identify searches that will select issues meeting our needs, and we can wrap the github search to arrive at the desired set. 
-* possibly enabling personal ranking of found issues to influence the engine and your own resulting searches
+## A loose direction
+
+![services diagram](./github-matcher.png)
+
+* Create a stateless UI to 
+    * gather preferences, 
+    * query a set of query-generator services with those preferences
+    * Assemble responses from those services into a github query
+    * run the github query
+    * display the results
+    * possibly allow rating of results to be sent back to query-generators to influence
+      their algorithms 
+      
+* Create a set of query-generator services that
+    * accept some seed input
+    * map the input to a github query term the service finds relevent
+    * return the github search query term
+     
+* ideas for query-generators:
+  * language.  `seed=perl` might yield `query=lang:perl`
+  * repository visibility. `seed=low` might yeild `query=comments>10`
+  * level of pain of the issue. `seed=high` might yield `query=comments>30 +1 in:comments` 
+  * available time commitment, or difficulty of the fix. `seed=low` might yield `query="not hard" in:comments or easy in:comments`
+
 
 ## Outcomes
 * Prevent project sprawl by helping to ID code repositories doing things you are interested in. 
@@ -31,26 +50,6 @@ help learn indicators of
 * allow experimentation in a language you would like to learn 
 * allow scratching the code itch without starting a whole new project
 
-## A loose direction
-
-* look into ways to generate github search terms to find issues based on
-  *  language
-  * repository visibility
-  * level of pain of the issue
-  * available time commitment (level of difficulty of the fix)
-
-That indicates a UI that we can enter those preferences into,
-to generate the right search.  Submit it to github,
-display resulting issues (or repositories) that match best.
-[Clarity Seed](https://github.com/vmware/clarity-seed) is probably the starting point.
-
-There must be some data used to create search terms that lead to the right kind of issues.  This is probably some trained NN that we create before starting the app, that is loaded at runtime.
-
-feature? Allow thumbs-up or down on matches, store data and use it when training the NN, or to train the running system.
-
-This may be how we initially train it... run searches, rank thumbs up/down, store results, train, search, rank, train....?
-
-![services diagram](./github-matcher.png)
 
 ## Testing
 Tested on a mac, but real requirement is docker-compose.
