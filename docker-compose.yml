@@ -6,3 +6,7 @@ services:
      - "5000:5000"
     volumes:
      - .:/code
+  clarity-seed:
+    build: ./clarity-seed/
+    ports:
+     - "4200:4200"

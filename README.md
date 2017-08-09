@@ -51,6 +51,15 @@ Those preferences may be something like:
 * allow scratching the code itch without starting a whole new project
 
 
+## Build and run:
+
+```
+docker-compose build
+docker-compose up
+
+curl http://localhost:4200
+```
+
 ## Testing
 Tested on a mac, but real requirement is docker-compose.
 
