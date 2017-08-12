@@ -1,0 +1,34 @@
+<clr-tabs>
+    <clr-tab-link>My preferences</clr-tab-link>
+    <clr-tab-link>My issues</clr-tab-link>
+    <clr-tab-content>
+        Languages: <span class="label label-blue">{{userLanguage}}</span>
+    </clr-tab-content>
+    <clr-tab-content>
+        <clr-datagrid [clrDgLoading]="loadingUserIssues">
+            <clr-dg-column [clrDgField]="'id'">Id</clr-dg-column>
+            <clr-dg-column [clrDgField]="'state'">State</clr-dg-column>
+            <clr-dg-column [clrDgField]="'created_at'">Created</clr-dg-column>
+            <clr-dg-column [clrDgField]="'title'">Issue</clr-dg-column>
+            <clr-dg-column [clrDgField]="'url'">URL</clr-dg-column>
+
+            <clr-dg-row *clrDgItems="let issue of userIssues">
+                <!-- [routerLink]="['/issue', issue.id]" -->
+                <clr-dg-cell>{{issue.id}}</clr-dg-cell>
+                <clr-dg-cell>{{issue.state}}</clr-dg-cell>
+                <clr-dg-cell>{{issue.created_at | date:'MMM dd, yyyy H:mm:ss'}}</clr-dg-cell>
+                <clr-dg-cell>{{issue.title}}</clr-dg-cell>
+
+                <clr-dg-cell><a href="{{issue.url}}">{{issue.url}}</a></clr-dg-cell>
+                <!-- probably show body - it is too long for the datagrid  -->
+                <!-- <clr-dg-row-detail [clrDgReplace]="true" *clrIfExpanded>
+                    <clr-dg-cell>{{issue.body}}</clr-dg-cell>
+                </clr-dg-row-detail> -->
+            </clr-dg-row>
+            <clr-dg-footer>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} issues
+                <clr-dg-pagination #pagination [clrDgPageSize]="20"></clr-dg-pagination>
+            </clr-dg-footer>
+        </clr-datagrid>
+    </clr-tab-content>
+</clr-tabs>
