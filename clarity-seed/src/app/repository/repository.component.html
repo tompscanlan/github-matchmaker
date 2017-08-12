@@ -1,0 +1,50 @@
+<div *ngIf="repo">
+    <div class="pull-right btn-group">
+        <!-- <button *ngIf="!isFavorite()" class="btn btn-sm" (click)='addFavorite()'>
+          <clr-icon shape="favorite"></clr-icon>
+          Add to Favorites
+        </button>
+        <button *ngIf="isFavorite()" class="btn btn-sm" (click)='removeFavorite()'>
+          <clr-icon shape="favorite"></clr-icon>
+          Remove from Favorites
+        </button> -->
+        <!-- <button class="btn btn-sm" [routerLink]="['/runs']" [queryParams]="{wfName:workflow.name}">
+          <clr-icon shape="view-list"></clr-icon>
+          Show Repository
+        </button> -->
+    </div>
+    <div>
+        <img src="{{avatarUrl}}" class="repo-owner" />
+        <div class="repo-header">
+            <div class="title">{{repo.name}}
+                <clr-icon shape="favorite" *ngIf="isFavorite()" size="20" class="fav is-solid"></clr-icon>
+            </div>
+            <div>ID: {{repo.id}}</div>
+        </div>
+        <clr-datagrid [clrDgLoading]="loadingIssues">
+            <clr-dg-column [clrDgField]="'id'">Id</clr-dg-column>
+            <clr-dg-column [clrDgField]="'state'">State</clr-dg-column>
+            <clr-dg-column [clrDgField]="'created_at'">Created</clr-dg-column>
+            <clr-dg-column [clrDgField]="'title'">Issue</clr-dg-column>
+            <clr-dg-column [clrDgField]="'url'">URL</clr-dg-column>
+
+            <clr-dg-row *clrDgItems="let issue of issues">
+                <!-- [routerLink]="['/issue', issue.id]" -->
+                <clr-dg-cell>{{issue.id}}</clr-dg-cell>
+                <clr-dg-cell>{{issue.state}}</clr-dg-cell>
+                <clr-dg-cell>{{issue.created_at | date:'MMM dd, yyyy H:mm:ss'}}</clr-dg-cell>
+                <clr-dg-cell>{{issue.title}}</clr-dg-cell>
+
+                <clr-dg-cell><a href="{{issue.url}}">{{issue.url}}</a></clr-dg-cell>
+                <!-- probably show body - it is too long for the datagrid  -->
+                <!-- <clr-dg-row-detail [clrDgReplace]="true" *clrIfExpanded>
+                    <clr-dg-cell>{{issue.body}}</clr-dg-cell>
+                </clr-dg-row-detail> -->
+            </clr-dg-row>
+            <clr-dg-footer>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} issues
+                <clr-dg-pagination #pagination [clrDgPageSize]="20"></clr-dg-pagination>
+            </clr-dg-footer>
+        </clr-datagrid>
+    </div>
+</div>
