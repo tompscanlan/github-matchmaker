@@ -6,9 +6,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RepositoryComponent } from './repository/repository.component';
 import { ProfileComponent } from './profile/profile.component';
 
-import { HomeComponent } from './home/home.component';
-
-
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: DashboardComponent },

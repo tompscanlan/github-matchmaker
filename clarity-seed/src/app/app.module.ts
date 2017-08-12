@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { ClarityModule } from 'clarity-angular';
 import { AppComponent } from './app.component';
 import { ROUTING } from "./app.routing";
-import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { RepositoryComponent } from "./repository/repository.component";
@@ -18,7 +17,6 @@ import { ProfileComponent } from "./profile/profile.component";
     declarations: [
         AppComponent,
         AboutComponent,
-        HomeComponent,
         DashboardComponent,
         RepositoryComponent,
         ProfileComponent
