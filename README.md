@@ -20,7 +20,7 @@ Those preferences may be something like:
 
 ## A loose direction
 
-![services diagram](./github-matcher.png)
+![services diagram](./docs/github-matcher.png)
 
 * Create a stateless UI to 
     * gather preferences, 
@@ -60,6 +60,12 @@ docker-compose up
 curl http://localhost:4200
 ```
 
+
+![building](./docs/build.png)
+![running](./docs/run.png)
+![prefs](./docs/prefs.png)
+![results](./docs/results.png)
+
 ## Testing
 Tested on a mac, but real requirement is docker-compose.
 
@@ -72,3 +78,7 @@ cd github-matchmaker/integ-test/
 
 ```
 
+License
+-------
+
+Copyright VMware
