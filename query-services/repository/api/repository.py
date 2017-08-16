@@ -17,7 +17,8 @@ class Repository:
         result = r.json()
         for item in result["items"]:
             data.append("repo:%s" % item['full_name'])
-        return dict(query=data), 200
 
+        return dict(query=data), 200
+ 
 class_instance = Repository()
 
