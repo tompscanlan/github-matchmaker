@@ -11,15 +11,6 @@ export class DataService {
   constructor(private http: Http) {
   }
 
-//   getWorkflowExecutionLogs(workflowId: string, executionId: string, logContext?: LogContext) {
-//     const logsUrl = ENDPOINT_API + '/workflows/' + workflowId + '/executions/' + executionId + '/syslogs';
-//     const ctx = logContext ? logContext : new LogContext();
-
-//     // Extract to private helper method if more post occurrences are implemented
-//     return this.http.post(logsUrl, ctx).map(response => response.status === 200 ? response.json() : Observable.throw(response))
-//       .catch(error => Observable.throw(error));
-//   }
-
   getRepositories() {
      return this.doGet(ENDPOINT_API + '/repositories');
     //return this.doGet("/repos/angular/angular.js/issues?state=open&sort=updated&page=1&per_page=100&assignee=*");
@@ -37,7 +28,11 @@ export class DataService {
 
   getIssuesForLanguage(language: string ) { //array of languages?
     let issuesUrl = ENDPOINT_API + '/search/issues?q=language:' + language +"+state:open";
-    // doublecheck that this works
+    return this.doGet(issuesUrl);
+  }
+
+  getIssuesWithQuery(query: string) {
+    let issuesUrl = ENDPOINT_API + '/search/issues?q=' + query;
     return this.doGet(issuesUrl);
   }
 
@@ -82,5 +77,26 @@ export class DataService {
     } catch (jsonParseError) {
       return response;
     }
+  }
+
+  public buildQuery(queryObj: any) {
+    // type: string, language: string, scope: string, isPublic: string,
+    // author: string, state: string, comments: string, sort: string): string {
+    let query = '';
+    if (queryObj['type']) { query += 'type:' + queryObj['type'] + ' ';}
+    if (queryObj['state']) { query += 'state:' + queryObj['state'] + ' ';}
+    if (queryObj['language']) { query += 'language:' + queryObj['language'] + ' ';}
+    if (queryObj['scope']) { query += 'in:' + queryObj['scope']; + ' ';}
+    if (queryObj['author']) { query += 'author:' + queryObj['author'] + ' ';}
+    if (queryObj['comment']) {
+      let escapedComment = queryObj['comment'].replace(/"/g, '\\"');
+      query += '"' + escapedComment + '"' + ' ';
+    }
+    if (queryObj['commentsCount']) { query += 'comments:' + queryObj['commentsCount'] + ' ';} // comments:>500 or 500..1000
+    if (queryObj['sort']) { query += 'sort:' + queryObj['sort'] + ' ';}
+    if (queryObj['stars']) { query += 'stars:' + queryObj['stars'] + ' ';}
+
+    console.log("build query: " + query);
+    return query;
   }
 }

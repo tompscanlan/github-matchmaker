@@ -26,9 +26,6 @@ export class RepositoryComponent implements OnInit {
                 .switchMap((params: Params) => this.dataService.getRepo(params['repo-id']))
                 .subscribe(repo => {
                     this.repo = repo.json();
-                    // console.log(this.repo.json());
-                    //this.issuesUrl = this.repo['issues_url'];
-                    //this.language = this.repo['language'];
                     this.loadingIssues = true;
                     this.dataService.getIssues(this.repo['issues_url']).subscribe((res) => {
                         this.issues = res.json();
@@ -52,6 +49,6 @@ export class RepositoryComponent implements OnInit {
     }
 
     removeFromFavorites(): void {
-       //
+
     }
 }
