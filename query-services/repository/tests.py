@@ -2,18 +2,21 @@
 
 import os
 import unittest
+import re
+
 from api import *
 
 class TestCase(unittest.TestCase):
 
     def test_generate_empty_issue_query(self):
-        m = Mock()
-        assert m.generateIssueQuery() == ('{"query": ""}', 200)
+        p = re.compile(r"((repo:.*) ?)+")
+        r = Repository()
 
-    def test_generate_text_issue_query(self):
-        m = Mock()
-        assert m.generateIssueQuery("text") == ('{"query": "text"}', 200)
+        (output, rc) = r.generateIssueQuery()
 
+        assert rc == 200
+        m = p.match(output["query"])
+        assert m.group()
 
 if __name__ == '__main__':
     unittest.main()
