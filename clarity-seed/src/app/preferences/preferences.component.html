@@ -1,0 +1,74 @@
+<div class="content-container">
+    <div class="content-area">
+
+        <form>
+            <section class="form-block">
+                <div class="form-group">
+                    <label for="issueType">Type</label>
+                    <div class="select">
+                        <select class="capitalize" [(ngModel)]="query['type']" id="issueType" name="query.type">
+                            <option *ngFor="let issueType of issueTypes" [value]="issueType.value">{{issueType.type}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="commentScope">State:</label>
+                    <div class="select">
+                        <select class="capitalize" [(ngModel)]="query['state']" id="state" name="query.state">
+                            <option *ngFor="let state of states" [value]="state.value">{{state.type}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="language">Language</label>
+                    <input type="text" id="language" placeholder="Enter Language..." size="45" name="query.language" [(ngModel)]="query['language']">
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" placeholder="Enter Author..." size="45" name="query.author" [(ngModel)]="query['author']">
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <input type="text" id="comment" placeholder="Enter comments..." size="45" name="query.comment" [(ngModel)]="query['comment']">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comments count</label>
+                    <input type="text" id="comment" placeholder="Enter comments count expression..." size="45" name="query.commentsCount" [(ngModel)]="query['commentsCount']">
+                    <clr-icon shape="info-circle" class="is-info tooltip" size="16">
+                        <span class="tooltip-content">>100 matches issues with more than 100 comments. <br/>
+                            500..1000 matches issues with comments ranging from 500 to 1,000
+                        </span>
+                    </clr-icon>
+                </div>
+                <div class="form-group">
+                    <label for="scope">Scope:</label>
+                    <div class="select">
+                        <select class="capitalize" [(ngModel)]="query.scope" id="scope" name="query['scope']">
+                            <option *ngFor="let scope of scopes" [value]="scope.value">{{scope.type}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="stars">Stars</label>
+                    <input type="text" id="stars" placeholder="Enter stars..." size="45" name="query.stars" [(ngModel)]="query['stars']">
+                    <clr-icon shape="info-circle" class="is-info tooltip" size="16">
+                        <span class="tooltip-content">>100 matches issues in repos with more than 100 stars. <br/>
+                            500..1000 matches issues in repos with stars ranging from 500 to 1,000
+                        </span>
+                    </clr-icon>
+                </div>
+                <div class="form-group">
+                    <label for="reacionSort">Sort by reactions:</label>
+                    <div class="select">
+                        <select class="capitalize" [(ngModel)]="query.sort" id="reacionSort" name="query.sort">
+                            <option *ngFor="let reactionType of reactionTypes" [value]="reactionType.value">{{reactionType.type}}</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </form>
+
+        <button class="btn btn-primary" (click)="search()">Save preferences</button>
+    </div>
+</div>

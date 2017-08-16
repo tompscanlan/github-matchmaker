@@ -8,6 +8,11 @@ export class SharedService {
 
     public favoriteRepos = [];
 
+    public query = {};
+
     constructor() {
+        // set some initial values - higly likely to be selected
+       this.query['type'] = 'issue';
+       this.query['state'] = 'open';
     }
 }
