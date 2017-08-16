@@ -31,6 +31,10 @@ export class DataService {
     return this.doGet(issuesUrl);
   }
 
+  getIssueFromService(seed: string) {
+    return this.doGet("http://localhost:5001/v1/language?seed=" + seed);
+  }
+
   getIssuesWithQuery(query: string) {
     let issuesUrl = ENDPOINT_API + '/search/issues?q=' + query;
     return this.doGet(issuesUrl);

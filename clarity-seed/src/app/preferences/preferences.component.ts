@@ -37,11 +37,13 @@ export class PreferencesComponent implements OnInit, OnDestroy {
     constructor(private dataService: DataService,
         private sharedService: SharedService,
         private route: ActivatedRoute,
-       private router: Router) {
+        private router: Router) {
     }
 
     ngOnInit(): void {
-       this.query = this.sharedService.query;
+        // now linked with the running language service
+        this.dataService.getIssueFromService("java").subscribe(res => { console.log(res['_body']); });
+        this.query = this.sharedService.query;
     }
 
     ngOnDestroy(): void {
