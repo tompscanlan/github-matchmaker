@@ -18,7 +18,7 @@
                 <clr-dg-cell>{{issue.created_at | date:'MMM dd, yyyy H:mm:ss'}}</clr-dg-cell>
                 <clr-dg-cell>{{issue.title}}</clr-dg-cell>
 
-                <clr-dg-cell><a href="{{issue.url}}">{{issue.url}}</a></clr-dg-cell>
+                <clr-dg-cell><a href="{{issue['html_url']}}">{{issue['html_url']}}</a></clr-dg-cell>
                 <!-- probably show body - it is too long for the datagrid  -->
                 <!-- <clr-dg-row-detail [clrDgReplace]="true" *clrIfExpanded>
                     <clr-dg-cell>{{issue.body}}</clr-dg-cell>
