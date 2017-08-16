@@ -12,6 +12,13 @@ services:
      - "5001:5001"
     volumes:
      - .:/code
+  repository:
+    build: ./query-services/repository
+    ports:
+     - "5002:5002"
+    volumes:
+     - .:/code
+
   clarity-seed:
     build: ./clarity-seed/
     ports:
