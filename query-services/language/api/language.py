@@ -3,7 +3,10 @@ class Language:
     query = ""
 
     def generateIssueQuery(self, seed=""):
-        query = "language:%s" % seed
+        if seed != "":
+            query = "language:%s" % seed
+        else:
+            query = ""
 
         return dict(query=query), 200
 
