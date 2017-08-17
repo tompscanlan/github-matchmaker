@@ -64,5 +64,7 @@ export class PreferencesComponent implements OnInit, OnDestroy {
         this.sharedService.query = this.query;
         // don't navigate here - give a chance the user to change something
         // this.router.navigate(['/profile']);
+
+        alert('Your preferences have been saved');
     }
 }
