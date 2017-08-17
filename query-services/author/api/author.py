@@ -1,12 +1,12 @@
 import requests
 import operator
 
-class LanguagePreferences:
+class Author:
     query = ""
-    def getLanguageFromAuthorRepos(self, author):
+    def generateIssueQuery(self, seed):
         languages_count = dict()
         query_string = 'https://api.github.com/users/AUTHOR/repos'
-        r = requests.get(query_string.replace('AUTHOR', author))
+        r = requests.get(query_string.replace('AUTHOR', seed))
         result = r.json()
         for language in result:
             if language['language'] in languages_count:
@@ -19,5 +19,5 @@ class LanguagePreferences:
             return dict(query=sorted_languages_count[-2][0]), 200
         return dict(query=sorted_languages_count[-1][0]), 200
 
-class_instance = LanguagePreferences()
-# class_instance.getLanguageFromAuthorRepos('skymanaditya1')
+class_instance = Author()
+

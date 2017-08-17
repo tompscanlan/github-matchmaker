@@ -16,11 +16,11 @@ schemes:
 - "http"
 #- "https"
 paths:
-  /repository:
+  /author:
     get:
       summary: "Generate a github issue search query"
       description: "Given string, return a github issue search query string"
-      operationId: "api.repository.class_instance.generateIssueQuery"
+      operationId: "api.author.class_instance.generateIssueQuery"
       produces:
       - "application/json"
       parameters:

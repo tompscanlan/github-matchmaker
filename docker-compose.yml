@@ -24,6 +24,13 @@ services:
      - "5003:5003"
     volumes:
      - .:/code
+  author:
+    build: ./query-services/author
+    ports:
+     - "5004:5004"
+    volumes:
+     - .:/code
+
   clarity-seed:
     build: ./clarity-seed/
     ports:
