@@ -2,7 +2,7 @@ import {ClaritySeedAppHome} from './app.po';
 
 fdescribe('clarity-seed app', function () {
 
-  let expectedMsg: string = 'This is a Clarity seed application. This is the default page that loads for the application.';
+  let expectedMsg: string = 'This project will help you find easily projects, to which you can contribute with small effort and huge impact in 3 simple steps';
 
   let page: ClaritySeedAppHome;
 
