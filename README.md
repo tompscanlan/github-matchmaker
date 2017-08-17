@@ -36,10 +36,10 @@ Those preferences may be something like:
     * map the input to a github query term the service finds relevent
     * return the github search query term
      
-* ideas for query-generators:
+* ideas for [query-generators](./query-services):
   * [language](./query-services/language).  `seed=perl` might yield `query=lang:perl`
   * repository visibility. `seed=low` might yeild `query=comments>10`
-  * level of pain of the issue. `seed=high` might yield `query=comments>30 +1 in:comments` 
+  * level of [pain](./query-services/pain) of the issue. `seed=high` might yield `query=comments>30 +1 in:comments` 
   * available time commitment, or difficulty of the fix. `seed=low` might yield `query="not hard" in:comments or easy in:comments`
 
 
