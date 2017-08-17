@@ -4,7 +4,9 @@ A project to help you pick a github project to contribute to.  Also, you can con
 
 Proposed as a [VMware](http://www.vmware.com) Borathon project by team who-has-free-time.
 
+[Public Demo Site](http://159.203.117.65:4200)
 
+ 
 ## Description
 Sometimes we have got a bit of free time, and would love to help fix issues
 or add features to an existing project.
