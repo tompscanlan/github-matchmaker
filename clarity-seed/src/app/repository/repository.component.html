@@ -28,6 +28,7 @@
             <clr-dg-column [clrDgField]="'title'">Issue</clr-dg-column>
             <clr-dg-column [clrDgField]="'url'">URL</clr-dg-column>
 
+            <clr-dg-placeholder>No issues found</clr-dg-placeholder>
             <clr-dg-row *clrDgItems="let issue of issues">
                 <!-- [routerLink]="['/issue', issue.id]" -->
                 <clr-dg-cell>{{issue.id}}</clr-dg-cell>
