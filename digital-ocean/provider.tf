@@ -43,7 +43,8 @@ resource "digitalocean_droplet" "www-1" {
       "mv node-v8.4.0-linux-x64/* /usr/local/nodejs",
       "cd github-matchmaker",
       "sudo npm install -g yarn",
-      "yarn"
+      "yarn",
+      "ufw disable"
     ]
   }
 }
