@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "7.1"
-script: cd clarity-seed && npm install && npm test
+script: cd clarity-seed && npm install
 
 addons:
   apt:
