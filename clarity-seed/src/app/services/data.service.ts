@@ -39,6 +39,10 @@ export class DataService {
     return this.doGet("http://localhost:5003/v1/pain?seed=" + seed);
   }
 
+  getLanguageFromAuthorPrefs(author: string){
+    return this.doGet("http://localhost:5004/v1/author?seed=" + author);
+  }
+
   getIssuesWithQuery(query: string) {
     let issuesUrl = ENDPOINT_API + '/search/issues?q=' + query;
     return this.doGet(issuesUrl);
