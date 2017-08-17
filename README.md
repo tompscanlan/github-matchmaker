@@ -78,6 +78,15 @@ cd github-matchmaker/integ-test/
 
 ```
 
+## Deploy
+cd digital-ocean
+export DO_TOKEN=00000000000000000000
+terraform apply \
+  -var "do_token=${DO_TOKEN}" \
+  -var "pub_key=$HOME/.ssh/id_rsa.pub" \
+  -var "pvt_key=$HOME/.ssh/id_rsa"
+
+
 License
 -------
 
