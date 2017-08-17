@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "7.1"
+script: cd clarity-seed && npm install && npm test
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
