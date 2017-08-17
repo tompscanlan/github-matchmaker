@@ -73,6 +73,7 @@ export class PreferencesComponent implements OnInit, OnDestroy {
         this.sharedService.query = this.query;
         // don't navigate here - give a chance the user to change something
         alert('Your preferences have been saved');
+
     }
 
     gotoProfile() {
@@ -81,7 +82,6 @@ export class PreferencesComponent implements OnInit, OnDestroy {
 
     randomRepo() {
         let randomNum = this.getRandomInt(1,100);
-        console.log(randomNum);
         let randomRepo = this.repositories[randomNum];
         this.router.navigate(['/repository', randomRepo.id]);
     }
