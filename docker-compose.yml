@@ -18,7 +18,12 @@ services:
      - "5002:5002"
     volumes:
      - .:/code
-
+  pain:
+    build: ./query-services/pain
+    ports:
+     - "5003:5003"
+    volumes:
+     - .:/code
   clarity-seed:
     build: ./clarity-seed/
     ports:
