@@ -20,6 +20,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="commentScope">Pain:</label>
+                    <div class="select">
+                        <select class="capitalize" [(ngModel)]="query['pain']" id="state" name="query.pain">
+                            <option *ngFor="let painLevel of painLevels" [value]="painLevel.value">{{painLevel.type}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="language">Language</label>
                     <input type="text" id="language" placeholder="Enter Language..." size="45" name="query.language" [(ngModel)]="query['language']">
                 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { DataService } from "../services/data.service";
 import { SharedService } from "../services/shared.service";
 
@@ -19,7 +19,8 @@ export class ProfileComponent implements OnInit {
     userIssues = [];
 
     constructor(private dataService: DataService,
-                private sharedService: SharedService) { }
+                private sharedService: SharedService,
+                private ref: ChangeDetectorRef) { }
 
     ngOnInit(): void {
         this.dataService.getRepositories().
@@ -38,6 +39,7 @@ export class ProfileComponent implements OnInit {
                 this.userIssues = res.json()['items'];
                 // console.log(this.userIssues);
                 this.loadingUserIssues = false;
+                this.ref.detectChanges();
             }, (err) => {
                 console.log(err);
                 this.loadingUserIssues = false;
