@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
 })
 export class PreferencesComponent implements OnInit, OnDestroy {
     public query: any;
+    repositories = [];
 
     issueTypes = [
         { 'type': 'Issues', 'value': 'issue' },
@@ -45,8 +46,16 @@ export class PreferencesComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        // now linked with the running language service
         this.query = this.sharedService.query;
+
+        this.dataService.getRepositories().
+            subscribe(res => {
+                this.repositories = res.json();
+                console.log(this.repositories);
+            }, (err) => {
+                console.log(err);
+               // TODO: handle me
+            });
     }
 
     ngOnDestroy(): void {
@@ -63,6 +72,21 @@ export class PreferencesComponent implements OnInit, OnDestroy {
         });
         this.sharedService.query = this.query;
         // don't navigate here - give a chance the user to change something
-        // this.router.navigate(['/profile']);
+
+    }
+
+    gotoProfile() {
+        this.router.navigate(['/profile']);
+    }
+
+    randomRepo() {
+        let randomNum = this.getRandomInt(1,100);
+        console.log(randomNum);
+        let randomRepo = this.repositories[randomNum];//.find(r => r.id == randomNum);
+        this.router.navigate(['/repository', randomRepo.id]);
+    }
+
+    getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
