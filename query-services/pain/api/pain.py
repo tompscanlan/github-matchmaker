@@ -6,7 +6,7 @@ class Pain:
         if seed == "high":
             query = "comments:>30 critical in:comments"
         elif seed == "medium":
-            query = "comments:5:30 hurts in:comments"
+            query = "comments:5..30 hurts in:comments"
         else:
             query = ""
 

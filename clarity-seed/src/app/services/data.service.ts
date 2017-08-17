@@ -12,7 +12,7 @@ export class DataService {
   }
 
   getRepositories() {
-     return this.doGet(ENDPOINT_API + '/repositories');
+    return this.doGet(ENDPOINT_API + '/repositories');
     //return this.doGet("/repos/angular/angular.js/issues?state=open&sort=updated&page=1&per_page=100&assignee=*");
   }
 
@@ -26,13 +26,17 @@ export class DataService {
     return this.doGet(issuesUrl);
   }
 
-  getIssuesForLanguage(language: string ) { //array of languages?
-    let issuesUrl = ENDPOINT_API + '/search/issues?q=language:' + language +"+state:open";
+  getIssuesForLanguage(language: string) { //array of languages?
+    let issuesUrl = ENDPOINT_API + '/search/issues?q=language:' + language + "+state:open";
     return this.doGet(issuesUrl);
   }
 
-  getIssueFromService(seed: string) {
+  getQueryStrFromLanguageService(seed: string) {
     return this.doGet("http://localhost:5001/v1/language?seed=" + seed);
+  }
+
+  getQueryStrFromPainService(seed: string) {
+    return this.doGet("http://localhost:5003/v1/pain?seed=" + seed);
   }
 
   getIssuesWithQuery(query: string) {
@@ -41,7 +45,7 @@ export class DataService {
   }
 
   getIssueDetails(issueDetailsUrl: string) {
-     return this.doGet(issueDetailsUrl);
+    return this.doGet(issueDetailsUrl);
   }
 
   private doPost(url: string, body?: any): Observable<any> {
@@ -58,7 +62,7 @@ export class DataService {
     }
 
     return this.http.get(url, reqOptions);
-     //  .map(res => res.json());
+    //  .map(res => res.json());
   }
 
   private doPut(url: string, body: any): Observable<any> {
@@ -84,23 +88,26 @@ export class DataService {
   }
 
   public buildQuery(queryObj: any) {
-    // type: string, language: string, scope: string, isPublic: string,
-    // author: string, state: string, comments: string, sort: string): string {
     let query = '';
-    if (queryObj['type']) { query += 'type:' + queryObj['type'] + ' ';}
-    if (queryObj['state']) { query += 'state:' + queryObj['state'] + ' ';}
-    if (queryObj['language']) { query += 'language:' + queryObj['language'] + ' ';}
-    if (queryObj['scope']) { query += 'in:' + queryObj['scope']; + ' ';}
-    if (queryObj['author']) { query += 'author:' + queryObj['author'] + ' ';}
+    if (queryObj['type']) { query += 'type:' + queryObj['type'] + ' '; }
+    if (queryObj['state']) { query += 'state:' + queryObj['state'] + ' '; }
+    if (queryObj['languageQueryStr']) {
+      query += queryObj['languageQueryStr'] + ' ';
+    } else { // fallback to direct query appending
+      if (queryObj['language']) { query += 'language:' + queryObj['language'] + ' '; }
+    }
+    if (queryObj['scope']) { query += 'in:' + queryObj['scope']; + ' '; }
+    if (queryObj['author']) { query += 'author:' + queryObj['author'] + ' '; }
     if (queryObj['comment']) {
       let escapedComment = queryObj['comment'].replace(/"/g, '\\"');
       query += '"' + escapedComment + '"' + ' ';
     }
-    if (queryObj['commentsCount']) { query += 'comments:' + queryObj['commentsCount'] + ' ';} // comments:>500 or 500..1000
-    if (queryObj['sort']) { query += 'sort:' + queryObj['sort'] + ' ';}
-    if (queryObj['stars']) { query += 'stars:' + queryObj['stars'] + ' ';}
+    if (queryObj['commentsCount']) { query += 'comments:' + queryObj['commentsCount'] + ' '; } // comments:>500 or 500..1000
+    if (queryObj['sort']) { query += 'sort:' + queryObj['sort'] + ' '; }
+    if (queryObj['stars']) { query += 'stars:' + queryObj['stars'] + ' '; }
+    if (queryObj['painQueryStr']) { query += queryObj['painQueryStr'] + ' '; }
 
-    console.log("build query: " + query);
+    console.log(">>> Build query: " + query);
     return query;
   }
 }

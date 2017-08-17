@@ -23,6 +23,10 @@ export class PreferencesComponent implements OnInit, OnDestroy {
         { 'type': 'Title and body', 'value': 'body' },
         { 'type': 'Comments', 'value': 'comments' }
     ];
+    painLevels = [
+        { 'type': 'Really painful', 'value': 'high' },
+        { 'type': 'Some pain', 'value': 'medium' }
+    ];
 
     reactionTypes = [
         { 'type': 'Most reactions', 'value': 'reactions' },
@@ -42,7 +46,6 @@ export class PreferencesComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         // now linked with the running language service
-        this.dataService.getIssueFromService("java").subscribe(res => { console.log(res['_body']); });
         this.query = this.sharedService.query;
     }
 
@@ -52,8 +55,14 @@ export class PreferencesComponent implements OnInit, OnDestroy {
     }
 
     search() {
-        // TODO: match all or match any?
+        this.dataService.getQueryStrFromPainService(this.query['pain']).subscribe(res => {
+            this.query['painQueryStr'] = res.json()['query'];
+        });
+        this.dataService.getQueryStrFromLanguageService(this.query['language']).subscribe(res => {
+            this.query['languageQueryStr'] = res.json()['language'];
+        });
         this.sharedService.query = this.query;
-        this.router.navigate(['/profile']);
+        // don't navigate here - give a chance the user to change something
+        // this.router.navigate(['/profile']);
     }
 }
