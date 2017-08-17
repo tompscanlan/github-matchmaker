@@ -7,7 +7,7 @@ EXPOSE 4200
 COPY . /app
 WORKDIR /app
 
-RUN npm install -g @angular/cli && \
+RUN npm install -g @angular/cli || true && \
 	yarn && \
     npm rebuild node-sass --force
 ENTRYPOINT ["ng"]
