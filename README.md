@@ -1,5 +1,7 @@
 # github-matchmaker
 
+[![Build Status](https://travis-ci.org/tompscanlan/github-matchmaker.svg?branch=master)](https://travis-ci.org/tompscanlan/github-matchmaker)
+
 A project to help you pick a github project to contribute to.  Also, you can contribute to this one :)
 
 Proposed as a [VMware](http://www.vmware.com) Borathon project by team who-has-free-time.
