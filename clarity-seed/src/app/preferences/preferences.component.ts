@@ -89,4 +89,11 @@ export class PreferencesComponent implements OnInit, OnDestroy {
     getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
+
+    pullLanguagePrefs() {
+
+        // alert('Language name ' + this.dataService.getLanguageFromAuthorPrefs(this.query.author));  
+        // call getLanguageFromAuthorPrefs passing the author as argument, I will run checks later, in case the author name is not specified
+        // the retrieved language needs to be added to the preferences UI under the language tab
+    }
 }
